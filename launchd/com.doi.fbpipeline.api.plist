@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.doi.fbpipeline.api</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/python3</string>
+    <string>$HOME/.claude/skills/NEW/fb-scan-pipeline-v8.py</string>
+    <string>--serve</string>
+    <string>--host</string>
+    <string>127.0.0.1</string>
+    <string>--port</string>
+    <string>8000</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>FB_DAILY_QUOTA</key>
+    <string>2000</string>
+    <key>FB_MAX_PAGES</key>
+    <string>5</string>
+    <key>FB_SCRAPE_WORKERS</key>
+    <string>10</string>
+    <key>FB_V2_MAX_GLOBAL_WORKERS</key>
+    <string>10</string>
+    <key>FB_PROXY</key>
+    <string>http://127.0.0.1:6152</string>
+    <key>FB_PROXY_FALLBACK_DIRECT</key>
+    <string>0</string>
+    <key>FB_BROWSER_MAX_USES</key>
+    <string>1</string>
+    <key>FB_ROTATE_PROXY_PER_SCRAPE</key>
+    <string>1</string>
+    <key>FB_AD_LIBRARY_COUNTRY</key>
+    <string>US</string>
+    <key>FB_BACKFILL_LIMIT</key>
+    <string>600</string>
+    <key>FB_DEDUP_DAYS</key>
+    <string>4</string>
+    <key>FB_QUIET_ENABLED</key>
+    <string>1</string>
+    <key>FB_QUIET_START</key>
+    <string>1</string>
+    <key>FB_QUIET_END</key>
+    <string>7</string>
+    <key>FB_CYCLE_MINUTES</key>
+    <string>12</string>
+    <key>FB_DELAY_MIN_SEC</key>
+    <string>12</string>
+    <key>FB_DELAY_MAX_SEC</key>
+    <string>30</string>
+    <key>FB_LONG_BREAK_PROB</key>
+    <string>0.001</string>
+    <key>FB_LONG_BREAK_MIN_SEC</key>
+    <string>20</string>
+    <key>FB_LONG_BREAK_MAX_SEC</key>
+    <string>50</string>
+    <key>FB_BLOCK_RESOURCES</key>
+    <string>1</string>
+    <key>FB_LOG_CONSOLE</key>
+    <string>0</string>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>$HOME/.claude/skills/NEW</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>SoftResourceLimits</key>
+  <dict>
+    <key>NumberOfFiles</key>
+    <integer>8192</integer>
+  </dict>
+
+  <key>HardResourceLimits</key>
+  <dict>
+    <key>NumberOfFiles</key>
+    <integer>8192</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>$HOME/.claude/skills/NEW/logs/api.out</string>
+
+  <key>StandardErrorPath</key>
+  <string>$HOME/.claude/skills/NEW/logs/api.err</string>
+
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+</dict>
+</plist>

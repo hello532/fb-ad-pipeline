@@ -1,0 +1,5 @@
+{
+  "_comment": "Brand -> domain seed map. Copy to known_domains.json and fill in your own research. Optional: the pipeline works without it using the heuristic resolver.",
+  "Example Brand": "examplebrand.com",
+  "Another Brand": "anotherbrand.com"
+}

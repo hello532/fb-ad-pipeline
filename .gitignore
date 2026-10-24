@@ -1,0 +1,54 @@
+# --- data & runtime state -------------------------------------------------
+pipeline.db
+pipeline.db-shm
+pipeline.db-wal
+*.db
+*.sqlite
+logs/
+shards/
+archives/
+exports/
+
+# --- captured data: never commit -----------------------------------------
+.browser_profile/
+.scraper_state.json
+corrected.json
+*.corrected.json
+raw/
+master.xlsx
+facebook-ad-keywords-master.xlsx
+facebook-ad-keywords-learned.txt
+facebook-ad-keywords-scan.txt
+d2c_domains*.txt
+d2c_links*
+reddit_gold_posts.json
+v3-product-trend-lists.json
+categories.json
+
+# --- credentials ---------------------------------------------------------
+.env
+.env.*
+*.local.md
+tabapi.local.md
+secrets/
+~/.config/
+*.pem
+*.key
+.claude/
+.workflow/
+
+# --- python --------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- os / editor ---------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+*.swp

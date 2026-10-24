@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.doi.fbpipeline.daily-direct</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>$HOME/.cc-switch/skills/NEW/launchd/daily_direct.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key><integer>4</integer>
+        <key>Minute</key><integer>15</integer>
+    </dict>
+    <key>StandardOutPath</key><string>$HOME/.cc-switch/skills/NEW/logs/daily-direct.out</string>
+    <key>StandardErrorPath</key><string>$HOME/.cc-switch/skills/NEW/logs/daily-direct.err</string>
+</dict>
+</plist>

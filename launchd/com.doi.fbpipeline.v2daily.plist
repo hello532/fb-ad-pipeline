@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.doi.fbpipeline.v2daily</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>cd $HOME/.claude/skills/NEW &amp;&amp; /opt/homebrew/bin/python3 -c "
+import sys, urllib.request as u, json, subprocess
+# 0) V3 三清单: Google Trends 产品 / AMZ123 新榜 / FB+Shopify 适配, 每天去重
+try:
+    r = subprocess.run(['/opt/homebrew/bin/python3', 'fb-scan-pipeline-v8.py', '--v3-trend-lists', '--v3-trend-append-scan'], capture_output=True, text=True, timeout=900)
+    print('[v3-trend-lists]', r.stdout[-1200:])
+    if r.stderr:
+        print('[v3-trend-lists ERR]', r.stderr[-1200:])
+except Exception as e:
+    print('[v3-trend-lists ERR]', e)
+# 1) 日快照 (velocity 信号依赖)
+try:
+    r = u.urlopen('http://127.0.0.1:8000/admin/snapshot-ad-count', data=b'', timeout=30).read()
+    print('[snapshot]', r.decode()[:150])
+except Exception as e:
+    print('[snapshot ERR]', e)
+# 2) 每日 LP 探针 200 条 (分布到一周覆盖完 top-1500)
+try:
+    r = u.urlopen('http://127.0.0.1:8000/admin/lp-probe?limit=200&amp;workers=10', data=b'', timeout=600).read()
+    print('[lp-probe]', r.decode()[:200])
+except Exception as e:
+    print('[lp-probe ERR]', e)
+" &gt;&gt; $HOME/.claude/skills/NEW/logs/v2daily.log 2&gt;&amp;1</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>4</integer>
+    <key>Minute</key>
+    <integer>15</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>$HOME/.claude/skills/NEW/logs/v2daily.out</string>
+  <key>StandardErrorPath</key>
+  <string>$HOME/.claude/skills/NEW/logs/v2daily.err</string>
+</dict>
+</plist>
